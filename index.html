@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TEYNER CAPS - Tienda Oficial</title>
+  <style>
+    body { font-family: 'Helvetica', Arial, sans-serif; background-color: #0d0d0d; color: #ffffff; margin: 0; padding: 0; padding-bottom: 80px; }
+    .banner-urgencia { background: #ff4d4d; color: white; text-align: center; padding: 10px; font-size: 11px; font-weight: bold; letter-spacing: 1px; position: sticky; top: 0; z-index: 1000; }
+    .header { text-align: center; padding: 25px 0; }
+    .logo-principal { width: 110px; height: auto; border-radius: 50%; border: 2px solid #25d366; padding: 5px; background: #1a1a1a; }
+    .nombre-marca { font-size: 26px; font-weight: bold; margin-top: 10px; letter-spacing: 2px; }
+    .portada-container { width: 100%; margin-bottom: 20px; overflow: hidden; position: relative; line-height: 0; }
+    .portada-img { width: 100%; height: auto; display: block; }
+    .portada-texto { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9) 70%); padding: 60px 15px 25px 15px; }
+    .portada-texto h2 { margin: 0; font-size: 22px; color: #fff; text-transform: uppercase; line-height: 1.4; }
+    .portada-texto p { margin: 5px 0 0 0; font-size: 13px; color: #25d366; font-weight: bold; }
+    .por-que-elegirnos { background: #111; padding: 20px 15px; margin: 10px 0; display: flex; justify-content: space-around; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; }
+    .item-valor { width: 30%; }
+    .item-valor span { font-size: 24px; display: block; margin-bottom: 5px; }
+    .item-valor b { font-size: 10px; color: #25d366; text-transform: uppercase; display: block; }
+    .item-valor p { font-size: 9px; color: #ccc; margin: 3px 0 0 0; line-height: 1.2; }
+    .seccion-dino { background: #1a1a1a; margin: 15px; border-radius: 20px; border: 2px solid #25d366; display: flex; align-items: center; padding: 15px; }
+    .dino-img { width: 45%; border-radius: 15px; border: 1px solid #333; }
+    .dino-texto { width: 55%; padding-left: 15px; }
+    .dino-texto h3 { margin: 0; font-size: 16px; color: #25d366; text-transform: uppercase; }
+    .dino-texto p { margin: 8px 0 0 0; font-size: 11px; color: #eee; font-weight: bold; }
+    .seccion-dino-dorado { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 100%); margin: 15px; border-radius: 15px; padding: 15px; text-align: center; color: #000; border: 2px solid #fff; }
+    .btn-promo-2x100 { background: #25d366; color: white; text-decoration: none; font-size: 15px; font-weight: bold; padding: 18px; border-radius: 15px; display: block; text-align: center; margin: 15px 15px 10px 15px; }
+    .grid-productos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; }
+    .producto { background-color: #1a1a1a; border: 1px solid #333; border-radius: 15px; padding: 10px; text-align: center; position: relative; }
+    .tag-stock { position: absolute; top: 15px; left: 15px; background: #ff4d4d; color: white; font-size: 8px; padding: 4px 8px; border-radius: 5px; z-index: 10; font-weight: bold; }
+    .contenedor-galeria { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 10px; margin-bottom: 8px; background-color: #000; scrollbar-width: none; }
+    .contenedor-galeria img { width: 100%; flex-shrink: 0; height: 145px; object-fit: contain; scroll-snap-align: center; }
+    .nombre-modelo { font-size: 11px; font-weight: bold; height: 32px; display: block; margin-top: 5px; color: #fff; }
+    .precio { color: #25d366; font-weight: bold; font-size: 16px; display: block; margin: 5px 0; }
+    .selector-talla { width: 100%; padding: 6px; background: #222; border: 1px solid #444; border-radius: 6px; font-size: 10px; color: white; margin-bottom: 8px; }
+    .btn-wsp { background: #25d366; color: white; border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: bold; font-size: 11px; cursor: pointer; }
+    .seccion-testimonios { background: #111; padding: 25px 15px; margin-top: 30px; }
+    .testimonio-card { background: #1a1a1a; padding: 15px; border-radius: 15px; margin-bottom: 15px; border-left: 3px solid #25d366; }
+    .cliente-header { display: flex; align-items: center; margin-bottom: 10px; }
+    .cliente-foto { width: 40px; height: 40px; border-radius: 50%; margin-right: 12px; border: 1px solid #333; }
+    .llegada-foto { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; margin-top: 10px; margin-right: 5px; cursor: pointer; border: 1px solid #333; }
+    .seccion-faq { padding: 25px 15px; }
+    .faq-item { background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #333; margin-bottom: 10px; }
+    .faq-item b { color: #25d366; font-size: 13px; display: block; margin-bottom: 5px; }
+    .faq-item small { color: #ccc; font-size: 11px; line-height: 1.4; display: block; }
+    .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); align-items: center; justify-content: center; }
+    .cerrar-modal { position: absolute; top: 30px; right: 25px; color: white; font-size: 35px; background: #333; width: 50px; height: 50px; border-radius: 50%; border: none; }
+    #modal-slider { width: 100%; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
+    #modal-slider img { width: 100vw; height: 80vh; object-fit: contain; flex-shrink: 0; scroll-snap-align: center; }
+  </style>
+</head>
+<body>
+
+  <div class="banner-urgencia">⏳ PROMO: 2 FITTED X S/ 100 | ¡UN DINO GRATIS POR CADA ENVÍO! 🦖</div>
+
+  <div class="header">
+    <img src="https://i.ibb.co/YJbgnJF/1767545207974.png" class="logo-principal">
+    <div class="nombre-marca">TEYNER CAPS</div>
+  </div>
+
+  <div class="portada-container">
+    <img src="https://i.ibb.co/0jNDCrxZ/1768234141968.png" class="portada-img">
+    <div class="portada-texto">
+      <h2>Colección Streetwear</h2>
+      <p>LAS MEJORES FITTED DEL PERÚ 🔥</p>
+    </div>
+  </div>
+
+  <div class="por-que-elegirnos">
+    <div class="item-valor"><span>🧢</span><b>HORMA PRO</b><p>No pierde la forma</p></div>
+    <div class="item-valor"><span>🧵</span><b>BORDADO 3D</b><p>Alta densidad</p></div>
+    <div class="item-valor"><span>📦</span><b>CAJA RÍGIDA</b><p>Envío 100% seguro</p></div>
+  </div>
+
+  <div class="seccion-dino">
+    <img src="https://i.ibb.co/cXR84pw8/20260112-143321.jpg" class="dino-img">
+    <div class="dino-texto">
+      <h3>DINO GRATIS POR ENVÍO 🦖</h3>
+      <p>Recibe un <b>Dinosaurio Coleccionable GRATIS</b> en cada pedido.</p>
+    </div>
+  </div>
+
+  <div class="seccion-dino-dorado">
+    <h3>🏆 BUSCA EL DINO DORADO</h3>
+    <p>¡Si te toca el Dino Dorado en tu caja, la siguiente gorra es GRATIS! ✨</p>
+  </div>
+
+  <a href="https://wa.me/51983388379?text=Hola%20Teyner%20Caps!%20Quiero%20aprovechar%20la%20promo%20de%202%20gorras%20x%20S/100" class="btn-promo-2x100">
+    🔥 PEDIR PROMO 2 X S/ 100
+  </a>
+
+  <div class="grid-productos">
+    <div class="producto">
+      <div class="tag-stock">EDICIÓN ESPECIAL 🔥</div>
+      <div class="contenedor-galeria" id="gal-mora">
+        <img src="https://i.ibb.co/8pSXZbR/20260217-233500.jpg" onclick="abrirSlider('gal-mora', 0)">
+        <img src="https://i.ibb.co/QFKPPZJQ/20260217-233506.jpg" onclick="abrirSlider('gal-mora', 1)">
+        <img src="https://i.ibb.co/13nJ6Dc/20260217-233521.jpg" onclick="abrirSlider('gal-mora', 2)">
+        <img src="https://i.ibb.co/23jwY704/20260217-233532.jpg" onclick="abrirSlider('gal-mora', 3)">
+      </div>
+      <span class="nombre-modelo">New Era x Mora - Limited</span>
+      <span class="precio">S/ 55.00</span>
+      <select id="tmora" class="selector-talla"><option>7 1/8</option><option>7 1/4</option><option>7 3/8</option><option>7 1/2</option></select>
+      <button onclick="enviar('New Era x Mora', 'tmora')" class="btn-wsp">PEDIR WHATSAPP</button>
+    </div>
+
+    <div class="producto">
+      <div class="tag-stock">¡QUEDAN 3! ⏳</div>
+      <div class="contenedor-galeria" id="gal-1">
+        <img src="https://i.ibb.co/xqPGHD08/20251229-153629.png" onclick="abrirSlider('gal-1', 0)">
+        <img src="https://i.ibb.co/Kp57Ws8f/20251229-153629-1.png" onclick="abrirSlider('gal-1', 1)">
+        <img src="https://i.ibb.co/TMn1Jxhx/20251229-153629-2.png" onclick="abrirSlider('gal-1', 2)">
+        <img src="https://i.ibb.co/svrZHq87/20251229-153629-3.png" onclick="abrirSlider('gal-1', 3)">
+      </div>
+      <span class="nombre-modelo">NY Yankees All Eyes On Me</span>
+      <span class="precio">S/ 55.00</span>
+      <select id="t1" class="selector-talla"><option>7 1/8</option><option>7 1/4</option><option>7 3/8</option><option>7 1/2</option></select>
+      <button onclick="enviar('NY Yankees Eyes', 't1')" class="btn-wsp">PEDIR WHATSAPP</button>
+    </div>
+
+    <div class="producto">
+      <div class="tag-stock">¡SE AGOTA! 🔥</div>
+      <div class="contenedor-galeria" id="gal-2">
+        <img src="https://i.ibb.co/kCCfFX1/20251229-153629-4.png" onclick="abrirSlider('gal-2', 0)">
+        <img src="https://i.ibb.co/0jxTfKYt/20251229-153629-5.png" onclick="abrirSlider('gal-2', 1)">
+        <img src="https://i.ibb.co/n8KstJqJ/20251229-153629-6.png" onclick="abrirSlider('gal-2', 2)">
+        <img src="https://i.ibb.co/vvqm7RbF/20251229-153629-7.png" onclick="abrirSlider('gal-2', 3)">
+      </div>
+      <span class="nombre-modelo">City of Angeles Limited</span>
+      <span class="precio">S/ 55.00</span>
+      <select id="t2" class="selector-talla"><option>7 1/8</option><option>7 1/4</option><option>7 3/8</option><option>7 1/2</option></select>
+      <button onclick="enviar('City of Angeles', 't2')" class="btn-wsp">PEDIR WHATSAPP</button>
+    </div>
+
+    <div class="producto">
+      <div class="tag-stock">¡QUEDAN 2! ⏳</div>
+      <div class="contenedor-galeria" id="gal-3">
+        <img src="https://i.ibb.co/35w707Yg/20251229-153629-8.png" onclick="abrirSlider('gal-3', 0)">
+        <img src="https://i.ibb.co/KpkLKxRt/20251229-153629-9.png" onclick="abrirSlider('gal-3', 1)">
+        <img src="https://i.ibb.co/vx1SDF16/20251229-153629-10.png" onclick="abrirSlider('gal-3', 2)">
+        <img src="https://i.ibb.co/99HjK0RQ/20251229-153629-11.png" onclick="abrirSlider('gal-3', 3)">
+      </div>
+      <span class="nombre-modelo">59 Fifty Day Collection</span>
+      <span class="precio">S/ 55.00</span>
+      <select id="t3" class="selector-talla"><option>7 1/8</option><option>7 1/4</option><option>7 3/8</option><option>7 1/2</option></select>
+      <button onclick="enviar('59 Fifty Day', 't3')" class="btn-wsp">PEDIR WHATSAPP</button>
+    </div>
+
+    <div class="producto">
+      <div class="tag-stock">¡TOP VENTAS! 🔥</div>
+      <div class="contenedor-galeria" id="gal-4">
+        <img src="https://i.ibb.co/8LZLGhK8/20251229-153629-15.png" onclick="abrirSlider('gal-4', 0)">
+        <img src="https://i.ibb.co/Lzz73KcJ/20251229-153629-14.png" onclick="abrirSlider('gal-4', 1)">
+        <img src="https://i.ibb.co/wFc68VDc/20251229-153629-13.png" onclick="abrirSlider('gal-4', 2)">
+        <img src="https://i.ibb.co/F4nXbPKz/20251229-153629-16.png" onclick="abrirSlider('gal-4', 3)">
+      </div>
+      <span class="nombre-modelo">New Era Graffiti Special</span>
+      <span class="precio">S/ 55.00</span>
+      <select id="t4" class="selector-talla"><option>7 1/8</option><option>7 1/4</option><option>7 3/8</option><option>7 1/2</option></select>
+      <button onclick="enviar('New Era Graffiti', 't4')" class="btn-wsp">PEDIR WHATSAPP</button>
+    </div>
+  </div>
+
+  <div class="seccion-testimonios">
+    <h3 style="text-align:center; color:#25d366; margin-bottom:20px;">CLIENTES SATISFECHOS ✅</h3>
+    <div class="testimonio-card">
+      <div class="cliente-header"><img src="https://i.ibb.co/zhHXqCTm/IMG-20251230-WA0050.jpg" class="cliente-foto"><div><b>John Alexis</b><br><span style="color:#FFD700; font-size:10px;">★★★★★</span></div></div>
+      <p style="font-size:11px;">"Ya me llegaron mi terrible tío Teyner Muchas gracias es tan elegantes full calidad"</p>
+      <img src="https://i.ibb.co/WW6yxjHg/20251230-194544.jpg" class="llegada-foto" onclick="verImagenSola(this.src)">
+      <img src="https://i.ibb.co/fzqNCyXs/20251230-194404.jpg" class="llegada-foto" onclick="verImagenSola(this.src)">
+    </div>
+    <div class="testimonio-card">
+      <div class="cliente-header"><img src="https://i.ibb.co/Zswt0Tk/1767143372157.png" class="cliente-foto"><div><b>Christian Efraín</b><br><span style="color:#FFD700; font-size:10px;">★★★★★</span></div></div>
+      <p style="font-size:11px;">"acabo de recoger mi pedido todo conforme súper calidad"</p>
+      <img src="https://i.ibb.co/Xx62tRnr/20251230-205823.jpg" class="llegada-foto" onclick="verImagenSola(this.src)">
+    </div>
+    <div class="testimonio-card">
+      <div class="cliente-header"><img src="https://i.ibb.co/DP2DYYMQ/file-0000000084f471f5b6f8e4b5006888dd.png" class="cliente-foto"><div><b>Percy Quintana</b><br><span style="color:#FFD700; font-size:10px;">★★★★★</span></div></div>
+      <p style="font-size:11px;">"Chébere manito es tan elegante los techos 100% recomendado"</p>
+      <img src="https://i.ibb.co/Csz02G1z/file-00000000c464720eb387f9e8f06612df.png" class="llegada-foto" onclick="verImagenSola(this.src)">
+    </div>
+  </div>
+
+  <div class="seccion-faq">
+    <h3 style="text-align:center; color:#fff; font-size:16px; margin-bottom:15px;">DUDAS FRECUENTES 🧐</h3>
+    <div class="faq-item">
+      <b>¿Cómo envían a provincias?</b>
+      <small>Envíos por <b>SHALOM</b> a todo el Perú. Para envíos a provincia el <b>PAGO ES COMPLETO</b> por adelantado.</small>
+    </div>
+    <div class="faq-item">
+      <b>¿Cómo es el envío en Lima?</b>
+      <small>En Lima contamos con <b>DELIVERY PAGO CONTRA ENTREGA</b> en todos los distritos.</small>
+    </div>
+    <div class="faq-item">
+      <b>¿Cuáles son los métodos de pago?</b>
+      <small>Aceptamos únicamente <b>YAPE</b> y transferencia <b>BCP</b>.</small>
+    </div>
+  </div>
+
+  <div id="modal-container" class="modal"><button class="cerrar-modal" onclick="cerrarSlider()">✕</button><div id="modal-slider"></div></div>
+
+  <script>
+    function abrirSlider(idGal, indexInicial) {
+      const imgs = document.getElementById(idGal).getElementsByTagName('img');
+      let html = '';
+      for (let i = 0; i < imgs.length; i++) html += `<img src="${imgs[i].src}">`;
+      const slider = document.getElementById('modal-slider');
+      slider.innerHTML = html;
+      document.getElementById('modal-container').style.display = 'flex';
+      slider.scrollLeft = indexInicial * window.innerWidth;
+    }
+    function verImagenSola(src) {
+      document.getElementById('modal-slider').innerHTML = `<img src="${src}" style="width:100vw;">`;
+      document.getElementById('modal-container').style.display = 'flex';
+    }
+    function cerrarSlider() { document.getElementById('modal-container').style.display = 'none'; }
+    function enviar(mod, id) {
+      const t = document.getElementById(id).value;
+      const msg = `¡Hola Teyner Caps! Me interesa el modelo ${mod} en talla ${t}. ¿Sigue la promo 2x100?`;
+      window.location.href = `https://wa.me/51983388379?text=${encodeURIComponent(msg)}`;
+    }
+  </script>
+</body>
+</html>
